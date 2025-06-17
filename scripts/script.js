@@ -9,6 +9,7 @@ const loadPhones = async (phoneName) => {
 
 const displayPhones = (phones) => {
   const phoneContainer = document.getElementById("card-container");
+  phoneContainer.innerHTML = "";
 //   console.log(phones);
   phones.forEach((phone) => {
     const phoneDiv = document.createElement("div");
