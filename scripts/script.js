@@ -35,6 +35,7 @@ const displayPhones = (phones) => {
        `;
     phoneContainer.appendChild(phoneDiv);
   });
+  loadingSpinner(false);
 };
 
 const handleSearch = () => {
@@ -45,6 +46,20 @@ const handleSearch = () => {
   if (searchText === "") {
     alert("Please enter a phone name to search");
   }
+  loadingSpinner(true);
 };
 
-loadPhones();
+// show and hide loading spinner
+const loadingSpinner = (isLoading) =>{
+    const spinner = document.getElementById('loadingSpinner');
+    if(  isLoading ){
+        spinner.classList.remove('hidden');
+    }
+    else{
+        spinner.classList.add('hidden');
+    }
+}
+
+
+
+// loadPhones();
