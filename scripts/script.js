@@ -11,7 +11,8 @@ const displayPhones = (phones) => {
   const phoneContainer = document.getElementById("card-container");
   phoneContainer.innerHTML = "";
 //   console.log(phones);
-  phones.forEach((phone) => {
+// showing 0 - 12 search result using slice
+  phones.slice(0,12).forEach((phone) => {
     const phoneDiv = document.createElement("div");
     phoneDiv.classList = "card bg-gray-100 shadow-sm";
     phoneDiv.innerHTML = `
