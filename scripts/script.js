@@ -9,10 +9,17 @@ const loadPhones = async (phoneName) => {
 
 const displayPhones = (phones) => {
   const phoneContainer = document.getElementById("card-container");
-  phoneContainer.innerHTML = "";
-//   console.log(phones);
-// showing 0 - 12 search result using slice
-  phones.slice(0,12).forEach((phone) => {
+  phoneContainer.innerHTML = ""; // clear the container before adding new phones
+  //   console.log(phones);
+  // show the show all button when the search result is more than 12
+  const showAllButton = document.getElementById("buttonDiv");
+  if (phones.length > 12) {
+    showAllButton.classList.remove("hidden");
+  } else {
+    showAllButton.classList.add("hidden");
+  }
+  // showing 0 - 12 search result using slice
+  phones.slice(0, 12).forEach((phone) => {
     const phoneDiv = document.createElement("div");
     phoneDiv.classList = "card bg-gray-100 shadow-sm";
     phoneDiv.innerHTML = `
@@ -26,15 +33,18 @@ const displayPhones = (phones) => {
             <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
         </div>
        `;
-       phoneContainer.appendChild(phoneDiv);
+    phoneContainer.appendChild(phoneDiv);
   });
 };
 
-const handleSearch = () =>{
-    const searchField = document.getElementById('search-input');
-    const searchText = searchField.value;
-    searchField.value = ''; // clear the box after search
-    loadPhones(searchText);
-}
+const handleSearch = () => {
+  const searchField = document.getElementById("search-input");
+  const searchText = searchField.value;
+  searchField.value = ""; // clear the box after search
+  loadPhones(searchText);
+  if (searchText === "") {
+    alert("Please enter a phone name to search");
+  }
+};
 
 loadPhones();
