@@ -18,7 +18,7 @@ const displayPhones = (phones, isShowAll) => {
   } else {
     showAllButton.classList.add("hidden");
   }
-  console.log("is show all", isShowAll);
+  // console.log("is show all", isShowAll);
   // showing 0 - 12 search result using slice
   if (!isShowAll) {
     phones = phones.slice(0, 12);
@@ -52,12 +52,23 @@ const handleShowDetails = async (id) => {
   );
   const data = await res.json();
   const phone = data.data;
-  console.log(phone);
+  showPhoneDetails(phone);
 };
+const showPhoneDetails = phone =>{
+  console.log(phone);
+  const phoneName = document.getElementById('show-detail-phone-name');
+  phoneName.innerText = phone.name;
+  const showDetailContainer = document.getElementById('show-detail-container');
+  showDetailContainer.innerHTML = `
+    <img src="${phone.image}" />
+  `;
+  showDetailsModal.showModal();
+}
 
 const handleSearch = (isShowAll) => {
   const searchField = document.getElementById("search-input");
   const searchText = searchField.value;
+
   searchField.value = ""; // clear the box after search
   loadPhones(searchText, isShowAll);
   loadingSpinner(true);
