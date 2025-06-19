@@ -54,6 +54,7 @@ const handleShowDetails = async (id) => {
   const phone = data.data;
   showPhoneDetails(phone);
 };
+// show phone details on modal
 const showPhoneDetails = phone =>{
   console.log(phone);
   const phoneName = document.getElementById('show-detail-phone-name');
@@ -61,6 +62,10 @@ const showPhoneDetails = phone =>{
   const showDetailContainer = document.getElementById('show-detail-container');
   showDetailContainer.innerHTML = `
     <img src="${phone.image}" />
+    <p>Chipset: <span></span>${phone.mainFeatures.chipSet}</p>
+    <p>Display: <span></span>${phone.mainFeatures.displaySize}</p>
+    <p>Storage: <span></span>${phone.mainFeatures.storage}</p>
+    <p>Release Date: <span></span>${phone.releaseDate}</p>
   `;
   showDetailsModal.showModal();
 }
